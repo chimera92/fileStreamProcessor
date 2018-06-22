@@ -49,6 +49,7 @@ class StreamJsonParser
 
     private void executeQueriesN_clearBuffer()
     {
+        System.out.println("\nSummary: ");
         for(Function<List<Record>,?> lambaFunc:queryList)
         {
             lambaFunc.apply(records);

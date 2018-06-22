@@ -64,4 +64,9 @@ class Record
     {
         return registered;
     }
+
+    public String getGreeting()
+    {
+        return greeting;
+    }
 }
