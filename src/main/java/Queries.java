@@ -5,21 +5,19 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static java.lang.Double.NaN;
 
 class Queries
 {
-
     private static Map<Integer,Integer> yearVS_regUserCount =new TreeMap<>();
     private static Map<Integer,Integer> allAgeVsCounts =new TreeMap<>();
     private static Map<Integer,Integer> numberOfFriendsVsCounts=new TreeMap<>();
-    private static int totalPeopleCountForMedianAge=0;
-    private static int totalPeopleCountForMeanBalance=0;
-    private static int totalFriendsAllUsers=0;
+    private static long totalPeopleCountForMedianAge=0;
+    private static long totalPeopleCountForMeanBalance=0;
+    private static long totalFriendsAllUsers=0;
     private static double totalBalanceAllUsers= 0.0;
-    private static int totalActiveFemaleUnreadMessages=0;
-    private static int totalActiveFemaleUsers=0;
+    private static long totalActiveFemaleUnreadMessages=0;
+    private static long totalActiveFemaleUsers=0;
 
     public static int getMedianAge(List<Record> ipRecordList)
     {
@@ -29,8 +27,8 @@ class Queries
             allAgeVsCounts.put(r.getAge(), allAgeVsCounts.getOrDefault(r.getAge(), 0) + 1);
         }
 
-        int countPointer=0;
-        int medianPos=totalPeopleCountForMedianAge/2;
+        long countPointer=0;
+        long medianPos=totalPeopleCountForMedianAge/2;
         for(int k: allAgeVsCounts.keySet())
         {
             countPointer+= allAgeVsCounts.get(k);
@@ -54,8 +52,8 @@ class Queries
             totalFriendsAllUsers++;
             numberOfFriendsVsCounts.put(r.getFriends().size(), numberOfFriendsVsCounts.getOrDefault(r.getFriends().size(), 0) + 1);
         }
-        int countPointer=0;
-        int medianPos=totalFriendsAllUsers/2;
+        long countPointer=0;
+        long medianPos=totalFriendsAllUsers/2;
         for(int k: numberOfFriendsVsCounts.keySet())
         {
             countPointer+= numberOfFriendsVsCounts.get(k);
@@ -83,7 +81,7 @@ class Queries
         return yearVS_regUserCount;
     }
 
-    public static Double getMeanBalanceAmount(List<Record> ipRecordList)
+    public static double getMeanBalanceAmount(List<Record> ipRecordList)
     {
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
@@ -106,7 +104,7 @@ class Queries
     }
 
 
-    public static Double getMeanUnreadMsgsForActiveFemales(List<Record> ipRecordList)
+    public static double getMeanUnreadMsgsForActiveFemales(List<Record> ipRecordList)
     {
 
         Pattern p = Pattern.compile("have\\s*(\\d+)\\s*unread\\s*messages");
